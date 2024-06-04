@@ -4,7 +4,6 @@
 using namespace std;
 
 list<string> item;
-bool completed = false;
 
 void add();
 void display();
@@ -21,7 +20,7 @@ void add(){
 
 void display(){
     int id = 1;
-    cout << endl << "------------------------------" << endl;
+    cout << "------------------------------" << endl;
     if(item.empty()){
         cout << "No task in the list" << endl;
     }else{
@@ -29,9 +28,9 @@ void display(){
        for (const string& tasks: item)
         {
             if (tasks.find("[Completed]") != string::npos) {
-                cout << id++ << ": "<< tasks << endl;
+                cout << "Task " << id++ << ": "<< tasks << endl;
             }else {
-                cout << id++ << ": "<< tasks << " [Pending]" << endl;
+                cout << "Task " << id++ << ": "<< tasks << " [Pending]" << endl;
             }
         }
     }
@@ -47,7 +46,7 @@ int id;
         for (it = item.begin(); it != item.end(); it++) {
             if (i == id) {
                 *it += " [Completed]";
-                cout << "Marked as completed" << endl;
+                cout << "Marked task " << id << " as completed" << endl;
                 break;
             }
             i++;
