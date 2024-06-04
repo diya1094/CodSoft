@@ -21,7 +21,7 @@ void add(){
 
 void display(){
     int id = 1;
-    cout << "------------------------------" << endl;
+    cout << endl << "------------------------------" << endl;
     if(item.empty()){
         cout << "No task in the list" << endl;
     }else{
@@ -29,9 +29,9 @@ void display(){
        for (const string& tasks: item)
         {
             if (tasks.find("[Completed]") != string::npos) {
-                cout << id++ << ": "<< tasks<< endl;
+                cout << id++ << ": "<< tasks << endl;
             }else {
-                cout << id++ << ": "<< tasks << " (Pending)" << endl;
+                cout << id++ << ": "<< tasks << " [Pending]" << endl;
             }
         }
     }
@@ -46,7 +46,7 @@ int id;
         int i = 1;
         for (it = item.begin(); it != item.end(); it++) {
             if (i == id) {
-                *it = " (Completed)" + *it;
+                *it += " [Completed]";
                 cout << "Marked as completed" << endl;
                 break;
             }
@@ -77,9 +77,9 @@ void remove(){
 
 int main(){
     int choice = -1;
-    cout << "-----TO-DO LIST-----" <<endl;
-    cout << "1. Add new task\n2.Display all tasks\n3.Mark a task as completed\n4.Remove a task\n5.Exit the list" << endl;
-    cout << "--------------------";
+    cout << endl <<  "-----TO-DO LIST-----" <<endl;
+    cout << "1.Add new task\n2.Display all tasks\n3.Mark a task as completed\n4.Remove a task\n5.Exit the list" << endl;
+    cout << "--------------------" << endl;
     while(choice!=5){
         cout << "\nEnter your choice: ";
         cin >> choice;
