@@ -39,7 +39,7 @@ void display(){
 void markTaskCompleted(){
 int id;
     list<string>::iterator it;
-    cout << "Enter the task id to mark as completed: ";
+    cout << "Enter the task id: ";
     cin >> id;
     if (id > 0 && id <= item.size()) {
         int i = 1;
@@ -59,7 +59,7 @@ int id;
 void remove(){
     int id,currentId=1;
     list <string>:: iterator it;
-    cout << "Enter task id to be deleted: ";
+    cout << "Enter task id: ";
     cin >> id;
     if(id>0 && id <= item.size()){
         for(it = item.begin(); it !=item.end(); it++){
