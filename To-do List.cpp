@@ -36,8 +36,9 @@ void display(){
     }
     cout << "------------------------------" << endl;
 }
+
 void markTaskCompleted(){
-int id;
+    int id;
     list<string>::iterator it;
     cout << "Enter the task id: ";
     cin >> id;
@@ -45,8 +46,12 @@ int id;
         int i = 1;
         for (it = item.begin(); it != item.end(); it++) {
             if (i == id) {
-                *it += " [Completed]";
-                cout << "Marked task " << id << " as completed" << endl;
+                if (it->find("[Completed]") != string::npos) {
+                    cout << "Task " << id << " is already completed." << endl;
+                } else {
+                    *it += " [Completed]";
+                    cout << "Marked task " << id << " as completed" << endl;
+                }
                 break;
             }
             i++;
@@ -76,9 +81,9 @@ void remove(){
 
 int main(){
     int choice = -1;
-    cout << endl <<  "-----TO-DO LIST-----" <<endl;
+    cout << endl << "---------TO-DO LIST---------" <<endl;
     cout << "1.Add new task\n2.Display all tasks\n3.Mark a task as completed\n4.Remove a task\n5.Exit the list" << endl;
-    cout << "--------------------" << endl;
+    cout << "----------------------------" << endl;
     while(choice!=5){
         cout << "\nEnter your choice: ";
         cin >> choice;
