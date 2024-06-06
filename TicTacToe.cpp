@@ -4,7 +4,7 @@ using namespace std;
 
 // declaration
 const int s = 3;
-char grid[3][3] = {{'0','1','2'},{'3','4','5'},{'6','7','8'}};
+char grid[3][3] = {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
 char space[s][s] = { {' ',' ', ' '}, { ' ', ' ', ' '},{ ' ', ' ',' '}};
 string n1,n2;
 char ch;
@@ -31,39 +31,39 @@ void game(){
     int r,c;
     //locating input place
     switch (num) {
-        case 0: 
-            r = 0; 
-            c = 0; 
-            break;
         case 1: 
             r = 0; 
-            c = 1; 
+            c = 0; 
             break;
         case 2: 
             r = 0; 
-            c = 2; 
+            c = 1; 
             break;
         case 3: 
-            r = 1; 
-            c = 0; 
+            r = 0; 
+            c = 2; 
             break;
         case 4: 
             r = 1; 
-            c = 1;
+            c = 0; 
             break;
         case 5: 
             r = 1; 
-            c = 2; 
+            c = 1;
             break;
         case 6: 
-            r = 2; 
-            c = 0;
+            r = 1; 
+            c = 2; 
             break;
         case 7: 
             r = 2; 
-            c = 1;
+            c = 0;
             break;
         case 8: 
+            r = 2; 
+            c = 1;
+            break;
+        case 9: 
             r = 2; 
             c = 2; 
             break;
@@ -107,8 +107,17 @@ bool checkTie(char space[s][s]){
     return true;
 }
 
+// reset board for play again
+void reset() {
+    for (int i = 0; i < s; i++) {
+        for (int j = 0; j < s; j++) {
+            space[i][j] = ' ';
+        }
+    }
+}
+
 int main(){ 
-    bool end = false;
+    char playAgain;
     cout << endl <<  "WELCOME TO TIC TAC TOE GAME" << endl;
 
     //enter player name
@@ -119,33 +128,42 @@ int main(){
 
     cout << "Player 1 has been assigned X and Player 2 has been assigned 0" << endl;
 
-    ch = 'X';
+    do{
+        bool end = false;
+        ch = 'X';
+        board(grid);
 
-    board(grid);
-
-    while(!end){
-        board(space);
-        if(ch == 'X'){
-            cout << endl << n1 << "'s turn. Enter number(0-8): ";
-            cin >> num;
-        }
-        else{
-            cout << endl <<  n2<< "'s turn. Enter number(0-8): ";
-            cin >> num;
-        }
-
-        game();
-
-        if (checkWin(space)) {
+        while(!end){
             board(space);
-            cout << ((ch == 'X') ? n2 : n1) << " wins!" << endl;
-            end = true;
-        } 
-        else if (checkTie(space)) {
-            board(space);
-            cout << "It's a tie!" << endl;
-            end = true;
+            if(ch == 'X'){
+                cout << endl << n1 << "'s turn. Enter number(1-9): ";
+                cin >> num;
+            }
+            else{
+                cout << endl <<  n2<< "'s turn. Enter number(1-9): ";
+                cin >> num;
+            }
+
+            game();
+
+            if (checkWin(space)) {
+                board(space);
+                cout << ((ch == 'X') ? n2 : n1) << " wins!" << endl;
+                end = true;
+            } 
+            else if (checkTie(space)) {
+                board(space);
+                cout << "It's a tie!" << endl;
+                end = true;
+            }
         }
-    }
+        cout << "Do you want to play again? (y/n): ";
+        cin >> playAgain;
+
+        if (playAgain == 'y' || playAgain == 'Y') {
+            reset();
+        }
+
+    }while(playAgain == 'y' || playAgain == 'Y');
     return 0;
 }
